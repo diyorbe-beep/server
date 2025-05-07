@@ -26,5 +26,5 @@ app.post('/api/auth/register', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Server http://localhost:${port} da ishlayapti`);
+  console.log(`🚀 Server https://my-ser-tnvw.onrender.com:${port} da ishlayapti`);
 });
