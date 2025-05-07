@@ -25,6 +25,21 @@ app.post('/api/auth/register', (req, res) => {
   res.status(201).json({ message: 'Foydalanuvchi saqlandi', user: newUser });
 });
 
+// Login endpointini qo'shish
+app.post('/api/auth/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Foydalanuvchi topilishini tekshiramiz
+  const existingUser = users.find(u => u.username === username && u.password === password);
+  if (!existingUser) {
+    return res.status(400).json({ message: 'Foydalanuvchi topilmadi yoki parol noto‘g‘ri' });
+  }
+
+  console.log('Login muvaffaqiyatli:', existingUser);
+
+  res.status(200).json({ message: 'Muvaffaqiyatli kirish', user: existingUser });
+});
+
 app.listen(port, () => {
-  console.log(`🚀 Server https://my-ser-tnvw.onrender.com:${port} da ishlayapti`);
+  console.log(`🚀 Server http://localhost:${port} da ishlayapti`);
 });
