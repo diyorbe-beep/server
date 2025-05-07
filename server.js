@@ -8,10 +8,12 @@ app.use(cors({
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
+
 app.use(express.json());
 
 const users = []; // Oddiy massivga saqlayapmiz (realda bu DB bo‘ladi)
 
+// Register endpointi
 app.post('/api/auth/register', (req, res) => {
   const { username, password } = req.body;
 
@@ -24,7 +26,7 @@ app.post('/api/auth/register', (req, res) => {
   const newUser = { username, password };
   users.push(newUser);
 
-  console.log('Yangi foydalanuvchi:', newUser);
+  console.log('Yangi foydalanuvchi:', newUser);  // Yangi foydalanuvchi console'ga chiqariladi
 
   res.status(201).json({ message: 'Foydalanuvchi saqlandi', user: newUser });
 });
@@ -39,7 +41,7 @@ app.post('/api/auth/login', (req, res) => {
     return res.status(400).json({ message: 'Foydalanuvchi topilmadi yoki parol noto‘g‘ri' });
   }
 
-  console.log('Login muvaffaqiyatli:', existingUser);
+  console.log('Login muvaffaqiyatli:', existingUser);  // Login muvaffaqiyatli bo‘lsa, foydalanuvchi ma'lumotlari console'ga chiqariladi
 
   res.status(200).json({ message: 'Muvaffaqiyatli kirish', user: existingUser });
 });
