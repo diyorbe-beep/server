@@ -3,7 +3,11 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://my-ser-tnvw.onrender.com',  // Frontend URLni to'g'ri qo'yish
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json());
 
 const users = []; // Oddiy massivga saqlayapmiz (realda bu DB bo‘ladi)
@@ -41,5 +45,5 @@ app.post('/api/auth/login', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Server http://localhost:${port} da ishlayapti`);
+  console.log(`🚀 Server https://my-ser-tnvw.onrender.com:${port} da ishlayapti`);
 });
